@@ -1,0 +1,14 @@
+<div class="card" *ngIf="tags!=undefined;else loading">
+  <div class="card-header text-center">
+    <h6><i class="fas fa-tags"></i> Etiketler</h6>
+  </div>
+  <div class="card-body">
+    <div class="tags">
+      <app-tag *ngFor="let tag of tags" [tag]="tag.tag" ></app-tag><!--[color]="'secondary'" şeklinde değiştirilebilir. -->
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  Yükleniyor...
+</ng-template>

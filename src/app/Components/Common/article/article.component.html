@@ -1,0 +1,42 @@
+<!-- <p *ngIf="article;else loading" style="color:blueviolet">
+  <i> {{article.title}} </i><br>
+  {{article.body}}
+  <app-tag *ngFor="let tag of article.tags" [tag]="tag" [color]="'info'"></app-tag>
+</p> -->
+
+<div class="reviews">
+  <div class="row blockquote review-item">
+    <div class="col-md-3 text-center">
+      <img class="rounded-circle reviewer" [src]="article.authorUser.image ? article.authorUser.image:'http://standaloneinstaller.com/upload/avatar.png'  ">
+      <!--  http://localhost:4200/null  hatası bazı urllerin boş olmasından dolayı -->
+      <div class="caption">
+        <a role="button" :href="'/User/'+article.authorUser.userName" class="btn btn-outline-primary btn-sm border-0"><i
+            class="fas fa-user-circle"></i> {{article.authorUser.userName}}</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h4>{{article.title}}
+        <button class="btn btn-sm btn-outline-danger pull-right " v-on:click="likeOrUnlike" *ngIf="!isLiked"><i class="far fa-heart"></i>
+          {{article.likedUserIds.length}}</button>
+        <button class="btn btn-sm btn-danger pull-right " v-on:click="likeOrUnlike" *ngIf="isLiked"><i class="fas fa-heart"></i>
+          {{article.likedUserIds.length}}</button>
+        <a class="btn btn-sm btn-outline-info" *ngIf="isMe" :href="'/Article/Edit/'+this.article.slug"><i class="fas fa-edit"></i>
+          Düzenle</a>
+      </h4>
+      <p class="review-text">{{ isBodySmall ? article.body.substring(0,200)+"..." : article.body}}<br>
+        <a [routerLink]="['/Article',article.slug]"  *ngIf="isBodySmall">
+          <i class="fas fa-arrow-alt-circle-right"></i>
+          devamı için tıklayın. </a>
+      </p>
+      <p class="review-date text-right"><i class="far fa-clock"></i> {{article.updatedAt | date:'dd-MM-yyyy hh:mm' }}</p>
+      <hr />
+      <div class="text-right">
+        <app-tag *ngFor="let tag of article.tags" [tag]="tag" [color]="'info'"></app-tag>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  Yükleniyor...
+</ng-template>

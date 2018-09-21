@@ -1,0 +1,35 @@
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card border-info">
+      <div class="card-header">
+        <i class="fas fa-user"></i> Login Now
+      </div>
+      <div class="card-body">
+        <form class="form" #loginForm="ngForm" appIdentityRevealed>
+          <div class="form-group">
+            <label for="username"> Username</label>
+            <input [(ngModel)]="loginModel.username" type="email" name="email" class="form-control" placeholder="" #username="ngModel"
+              required>
+            <!--email eklemen yeterli-->
+            <div *ngIf="username.invalid  && (username.dirty || username.touched)" class="text-danger">
+              <span *ngIf="username.errors.required"> This element is required. </span>
+              <!-- <span *ngIf="username.errors.email"> This element is not email. </span> -->
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password"> Password</label>
+            <input [(ngModel)]="loginModel.password" type="password" name="password" class="form-control" placeholder="" #password="ngModel"
+              required>
+            <div *ngIf="password.invalid  && (password.dirty || password.touched)" class="text-danger">
+              <span *ngIf="password.errors.required"> This element is required. </span>
+            </div>
+          </div>
+          <button (click)="Login()" type="submit" class="btn btn-success float-right" [disabled]="loginForm.invalid">
+            <i class="fas fa-sign-in-alt"></i> Login Now</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

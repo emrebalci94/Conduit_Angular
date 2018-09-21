@@ -1,0 +1,37 @@
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card border-info">
+      <div class="card-header">
+        <i class="fas fa-user" aria-hidden="true"></i> Register Now
+      </div>
+      <div class="card-body">
+        <form class="form" #registerForm="ngForm" appIdentityRevealed>
+          <div class="form-group">
+            <label for="username"> Username</label>
+            <input [(ngModel)]="registerModel.userName" type="text" name="userName" #userName="ngModel" required placeholder="Username" class="form-control" minlength="3" > 
+            <div *ngIf="userName.invalid  && (userName.dirty || userName.touched)" class="text-danger">
+              <span *ngIf="userName.errors.required"><i class="fas fa-exclamation-circle"></i> This element is required. </span>
+              <span *ngIf="userName.errors.minlength"><i class="fas fa-exclamation-circle"></i> This element minium 4 count.</span>
+
+              <!-- <span *ngIf="username.errors.email"> This element is not email. </span> -->
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password"> Password</label>
+            <input [(ngModel)]="registerModel.password" type="password" name="password" class="form-control"
+              placeholder="Password" #password="ngModel" minlength="5" required>
+            <div *ngIf="password.invalid  && (password.dirty || password.touched)" class="text-danger">
+              <span *ngIf="password.errors.required"><i class="fas fa-exclamation-circle"></i> This element is required. </span>
+              
+              <span *ngIf="password.errors.minlength"><i class="fas fa-exclamation-circle"></i> This element minium 5 count.</span>
+            </div>
+          </div>
+
+          <button (click)="Register()" type="submit" class="btn btn-primary float-right"    [disabled]="registerForm.invalid"> <i class="fas fa-user-plus"
+           ></i> Register Now</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
