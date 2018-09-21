@@ -1,13 +1,13 @@
 <div class="container-fluid mt-3">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" *ngIf="articles">
       <!-- <h1 *ngIf="user"> {{user.userName +' '+ user.id}} </h1> -->
-      <div *ngFor="let article of articles">
-        <app-article [article]="article" [isMe]="user && article.authorUserId==user.id" [isLiked]="isLiked(article.likedUserIds)"></app-article>
+      <div *ngFor="let article of articles" >
+        <app-article  [article]="article" [isMe]="user && article.authorUserId==user.id" [isLiked]="isLiked(article.likedUserIds)"></app-article>
       </div>
     </div>
     <div class="col-md-4">
-      <app-tags></app-tags>
+      <app-tags *ngIf="tags"></app-tags>
     </div>
   </div>
 </div>

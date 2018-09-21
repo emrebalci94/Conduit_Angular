@@ -28,6 +28,7 @@ import { RegisterService } from './services/register.service';
 
 import {ToastrModule} from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -56,6 +57,7 @@ import { CommonModule } from '@angular/common';
     ArticleComponent,
     TagComponent,
     TagsComponent,
+    ArticleDetailComponent,
   ],
   // HTTP_INTERCEPTORS lı olan json: Guard ile kontrol edilen bir yere istek atıldığında çalışır.
   providers: [AuthGuard, TokenService,  TagService, AuthserviceService, UserService, ArticleService, RegisterService, RouteService,

@@ -16,15 +16,15 @@
     </div>
     <div class="col-md-9">
       <h4>{{article.title}}
-        <button class="btn btn-sm btn-outline-danger pull-right " v-on:click="likeOrUnlike" *ngIf="!isLiked"><i class="far fa-heart"></i>
+        <button class="btn btn-sm btn-outline-danger pull-right" (click)="likeOrUnlike()" *ngIf="!isLiked"><i class="far fa-heart"></i>
           {{article.likedUserIds.length}}</button>
-        <button class="btn btn-sm btn-danger pull-right " v-on:click="likeOrUnlike" *ngIf="isLiked"><i class="fas fa-heart"></i>
+        <button class="btn btn-sm btn-danger pull-right " (click)="likeOrUnlike()" *ngIf="isLiked"><i class="fas fa-heart"></i>
           {{article.likedUserIds.length}}</button>
         <a class="btn btn-sm btn-outline-info" *ngIf="isMe" :href="'/Article/Edit/'+this.article.slug"><i class="fas fa-edit"></i>
           Düzenle</a>
       </h4>
       <p class="review-text">{{ isBodySmall ? article.body.substring(0,200)+"..." : article.body}}<br>
-        <a [routerLink]="['/Article',article.slug]"  *ngIf="isBodySmall">
+        <a [routerLink]="['/Article', article.slug ? article.slug:'']" *ngIf="isBodySmall">
           <i class="fas fa-arrow-alt-circle-right"></i>
           devamı için tıklayın. </a>
       </p>

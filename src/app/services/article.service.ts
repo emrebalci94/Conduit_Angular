@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
 import { Article, ArticleViewModel } from '../models/article';
+import { ResultMessage } from '../models/result-message';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,13 @@ export class ArticleService {
     return this._http.get<ArticleViewModel>(AppConstants.ServerWithApiUrl + parameters);
   }
 
-  
+  public GetArticleDetail(slug: string): Observable<Article> {
+    let url = AppConstants.ServerWithApiUrl + "Article/" + slug;
+    return this._http.get<Article>(url);
+  }
+
+  public Liked(userId: string, articleId: string): Observable<ResultMessage> {
+    let url = AppConstants.ServerWithApiUrl + `User/favoritearticle/${userId}?articleId=${articleId}`;
+    return this._http.post<ResultMessage>(url, null);
+  }
 }

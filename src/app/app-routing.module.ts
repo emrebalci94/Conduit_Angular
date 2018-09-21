@@ -7,6 +7,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   // { path: "List", component: ListComponent },
   { path: "Register", component: RegisterComponent },
   { path: "Login", component: LoginComponent },
+  { path: "Article/:slug", component: ArticleDetailComponent },
   { path: "Profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "**", component: DashboardComponent }//404 not found sayfasına yönlendirme yapılabilir.
+  { path: "**", redirectTo: '' }//404 not found sayfasına yönlendirme yapılabilir.
 
 ];
 
