@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+import { throws } from 'assert';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -6,11 +10,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile = null;
-  constructor() { }
+  profile: User = new User();
+  profileImage;
+  fileImage: FileList = null;//ilerde bakılacak.Apiye gönderilip kaydedilip apiden çağırmak lazım.
+  constructor(private _userService: UserService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
- 
+     let userId = localStorage.getItem("userId");
+    this._userService.getToUser(Number(userId)).subscribe(p => this.profile = p);
   }
 
+  save() {
+  
+    this._userService.updateProfile(this.profile).subscribe(success => {
+      if (success.errors) {
+        this._toastrService.error(success.errors.message, success.errors.code.toString());
+      }
+      else {
+        this._toastrService.success("Kayıt başarılı");
+
+      }
+    }, err => throws(err));
+  }
 }
