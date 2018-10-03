@@ -3,7 +3,6 @@
   {{article.body}}
   <app-tag *ngFor="let tag of article.tags" [tag]="tag" [color]="'info'"></app-tag>
 </p> -->
-
 <div class="reviews">
   <div class="row blockquote review-item">
     <div class="col-md-3 text-center">
@@ -31,7 +30,7 @@
       <p class="review-date text-right"><i class="far fa-clock"></i> {{article.updatedAt | date:'dd-MM-yyyy hh:mm' }}</p>
       <hr />
       <div class="text-right">
-        <app-tag *ngFor="let tag of article.tags" [tag]="tag" [color]="'info'"></app-tag>
+        <app-tag *ngFor="let tag of article.tags" [tag]="tag" [color]="'info'" (tagClick)="clikedToTag($event)" ></app-tag>
       </div>
     </div>
   </div>

@@ -16,15 +16,15 @@ export class ArticleService {
   }
 
   public GetAllArticles(tag?: string, offset?: number, limit?: number, userid?: number, onlyliked?: boolean): Observable<ArticleViewModel> {
-    let parameters = "Article/";
-    parameters += tag == undefined ? "" : "tag=" + tag;
-    parameters += offset == undefined ? "" : "offset=" + offset;
-    parameters += limit == undefined ? "" : "&limit=" + limit;
-    parameters += userid == undefined ? "" : "&userid=" + userid;
-    parameters += onlyliked == undefined ? "" : "&onlyliked=" + onlyliked;
+    let parameters = "Article";
+    parameters += tag == undefined ? "" : "?tag=" + tag;
+    parameters += offset == undefined ? "" : "?offset=" + offset;
+    parameters += limit == undefined ? "" : "?limit=" + limit;
+    parameters += userid == undefined ? "" : "?userid=" + userid;
+    parameters += onlyliked == undefined ? "" : "?onlyliked=" + onlyliked;
 
     // const parameters = `Article/tag=${tag}&offet=${offset}&limit=${limit}&userid=${userid}&onlyliked=${onlyliked}`;
-    // console.log(parameters);
+    console.log(parameters);
     return this._http.get<ArticleViewModel>(AppConstants.ServerWithApiUrl + parameters);
   }
 

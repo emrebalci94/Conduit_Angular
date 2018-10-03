@@ -1,13 +1,59 @@
 <div class="container-fluid mt-3">
   <div class="row">
+
+
     <div class="col-md-8" *ngIf="articles">
-      <!-- <h1 *ngIf="user"> {{user.userName +' '+ user.id}} </h1> -->
-      <div *ngFor="let article of articles" >
-        <app-article  [article]="article" [isMe]="user && article.authorUserId==user.id" [isLiked]="isLiked(article.likedUserIds)"></app-article>
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true"><i class="fas fa-tag"></i> Bütün makaleler</a>
+            </li>
+            <li class="nav-item" *ngFor="let tab of tabs">
+
+              <a class="nav-link" [id]="('t-'+tab.name+'-tab')" data-toggle="tab" [href]="('#t-'+tab.name)" role="tab"
+                [attr.aria-controls]="('t-'+tab.name)" aria-selected="false"><i class="fas fa-tag"></i> {{tab.name}}
+                &nbsp; <button type="button" class="btn btn-outline-danger btn-sm pull-right" (click)="closeTag(tab.name)">
+                  <i class="fas fa-window-close"></i></button>
+              </a>
+
+            </li>
+
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div *ngFor="let article of articles">
+                <app-article [article]="article" [isMe]="user && article.authorUserId==user.id" [isLiked]="isLiked(article.likedUserIds)"
+                  (tagClick)="tagClicked($event)"></app-article>
+              </div>
+            </div>
+
+            <div *ngFor="let tab of tabs" class="tab-pane fade" [id]="('t-'+tab.name)" role="tabpanel"
+              [attr.aria-labelledby]="('t-'+tab.name+'-tab')">
+              <div class="alert alert-danger" role="alert" *ngIf="tab.data.articles.length<=0;else tabOfArticles">
+                <h4 class="alert-heading"><i class="far fa-sad-tear"></i> Makele bulunamadı.</h4>
+                <p class="mb-0"><b>{{tab.name}}</b> etiketli konu başlığında makale bulunamadı.</p>
+                <a [routerLink]="['/CreateArticle']"><i class="fas fa-arrow-circle-right "></i> Hemen bir tane yaz </a>
+              </div>
+
+              <div #tabOfArticles *ngFor="let article of tab.data.articles">
+                <app-article [article]="article" [isMe]="user && article.authorUserId==user.id" [isLiked]="isLiked(article.likedUserIds)"
+                  (tagClick)="tagClicked($event)"></app-article>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
+
+
     </div>
     <div class="col-md-4">
-      <app-tags *ngIf="tags"></app-tags>
+      <app-tags *ngIf="tags" (tagClick)="tagClicked($event)"></app-tags>
     </div>
   </div>
 </div>

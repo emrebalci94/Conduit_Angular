@@ -6,4 +6,4 @@
   </li>
 
 </ul> -->
-<button class="btn btn-sm m-1" [ngClass]="'btn-outline-'+color"><i class="fas fa-tag"></i> {{tag}}</button>
+<button class="btn btn-sm m-1" [ngClass]="'btn-outline-'+color" (click)="clickToTag(tag);"><i class="fas fa-tag"></i> {{tag}}</button>

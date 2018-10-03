@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from '../../../models/article';
-import { Tag } from '../../../models/tag';
 import { User } from '../../../models/user';
 import { ArticleService } from '../../../services/article.service';
 import { throws } from 'assert';
@@ -16,10 +15,16 @@ export class ArticleComponent implements OnInit {
   @Input() isLiked: boolean = false;
   @Input() isMe: boolean = false;
   @Input() onlineUser: User;
+  @Output() tagClick = new EventEmitter<string>();
   constructor(private _articleService: ArticleService) { }
 
   ngOnInit() {
 
+  }
+
+  
+  clikedToTag(tag) {
+    this.tagClick.emit(tag);
   }
 
   likeOrUnlike() {
@@ -49,5 +54,6 @@ export class ArticleComponent implements OnInit {
       throw ("Önce üye girişi yapmalısınız.");
     }
   }
+
 
 }
