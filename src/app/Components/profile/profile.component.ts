@@ -16,12 +16,13 @@ export class ProfileComponent implements OnInit {
   constructor(private _userService: UserService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
-     let userId = localStorage.getItem("userId");
+    let userId = localStorage.getItem("userId");
     this._userService.getToUser(Number(userId)).subscribe(p => this.profile = p);
+
   }
 
   save() {
-  
+
     this._userService.updateProfile(this.profile).subscribe(success => {
       if (success.errors) {
         this._toastrService.error(success.errors.message, success.errors.code.toString());
@@ -31,5 +32,12 @@ export class ProfileComponent implements OnInit {
 
       }
     }, err => throws(err));
+  }
+
+  upload() {
+    this._userService.updateToProfileImage(this.fileImage.item(0)).subscribe(p => {
+      console.log(p);
+      this.profile = p.result
+    });
   }
 }

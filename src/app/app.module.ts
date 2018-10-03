@@ -61,11 +61,11 @@ import { ArticleDetailComponent } from './Components/article-detail/article_deta
   ],
   // HTTP_INTERCEPTORS lı olan json: Guard ile kontrol edilen bir yere istek atıldığında çalışır.
   providers: [AuthGuard, TokenService,  TagService, AuthserviceService, UserService, ArticleService, RegisterService, RouteService,
-    {
-      multi: true,
-      useClass: TokenInterceptorService,
-      provide: HTTP_INTERCEPTORS
-    },
+    // {
+    //   multi: true,
+    //   useClass: TokenInterceptorService,
+    //   provide: HTTP_INTERCEPTORS
+    // },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerService
