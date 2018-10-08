@@ -19,12 +19,16 @@ export class NewArticleComponent implements OnInit {
     this._activatedRoute.params.subscribe(param => {
       if (param["tag"]) {
         this.article.tags.push(param["tag"]);
+        this.tags.push({
+          display:param["tag"],
+          value:param["tag"]
+        });
       }
     })
   }
 
   save() {
-    const tags = this.tags.map(p => p.value);
+    const tags = this.tags.map(p => p.value[0].toUpperCase()+p.value.slice(1));
     this.article.tags = tags;
     this.article.slug = this.article.title.replace(" ", "_").toLowerCase();
     this.article.authorUserId = Number(localStorage.getItem("userId"));

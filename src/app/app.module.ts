@@ -31,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
 import { NewArticleComponent } from './Components/new-article/new-article.component';
 import { TagInputModule } from 'ngx-chips';
+import { EditArticleComponent } from './Components/edit-article/edit-article.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -62,6 +63,7 @@ import { TagInputModule } from 'ngx-chips';
     TagsComponent,
     ArticleDetailComponent,
     NewArticleComponent,
+    EditArticleComponent,
   ],
   // HTTP_INTERCEPTORS lı olan json: Guard ile kontrol edilen bir yere istek atıldığında çalışır.
   providers: [AuthGuard, TokenService,  TagService, AuthserviceService, UserService, ArticleService, RegisterService, RouteService,

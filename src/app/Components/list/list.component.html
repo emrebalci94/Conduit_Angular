@@ -36,7 +36,7 @@
               <div class="alert alert-danger" role="alert" *ngIf="tab.data.articles.length<=0;else tabOfArticles">
                 <h4 class="alert-heading"><i class="far fa-sad-tear"></i> Makele bulunamadı.</h4>
                 <p class="mb-0"><b>{{tab.name}}</b> etiketli konu başlığında makale bulunamadı.</p>
-                <a [routerLink]="['/CreateArticle']"><i class="fas fa-arrow-circle-right "></i> Hemen bir tane yaz </a>
+                <a [routerLink]="['/NewArticle',tab.name]"><i class="fas fa-arrow-circle-right "></i> Hemen bir tane yaz </a>
               </div>
 
               <div #tabOfArticles *ngFor="let article of tab.data.articles">

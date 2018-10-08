@@ -27,18 +27,23 @@ export class GlobalErrorHandlerService implements ErrorHandler {
         // this._router.navigate(["/Login"]);
         break;
       case 400:
-      console.log(error);
+        console.log(error);
         setTimeout(() => _toastrService.error("İlgili istek sonuçsuz kaldı", "Hata"));
         // _routerService.navigateByUrl('./')
 
 
         //  location.replace("/");
         break;
+      case 999://bu hatayı biz patlatıyoruz.
+        console.log(error.message);
+        setTimeout(() => _toastrService.error(error.message.toString(), "Hata"));
+        _routerService.navigate(["/"]);
+        break;
       default:
         //, private _toastrService: ToastrService
-        // _routerService.navigate(["/"]);
         console.log(error);
         setTimeout(() => _toastrService.error(error.toString(), "Hata"));
+        // _routerService.navigate(["/"]);
         break;
     }
 

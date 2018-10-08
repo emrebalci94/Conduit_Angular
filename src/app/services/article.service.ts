@@ -34,14 +34,25 @@ export class ArticleService {
   }
 
   public Liked(userId: string, articleId: string): Observable<ResultMessage> {
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+  });
     let url = AppConstants.ServerWithApiUrl + `User/favoritearticle/${userId}?articleId=${articleId}`;
-    return this._http.post<ResultMessage>(url, null);
+    return this._http.post<ResultMessage>(url, null,{ headers: headers });
   }
 
   public NewArticle(article: Article): Observable<ResultMessage> {
     const headers = new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("token")}`
-  });
-    return this._http.post<ResultMessage>(AppConstants.ServerWithApiUrl+"Article", article,{ headers: headers });
+    });
+    return this._http.post<ResultMessage>(AppConstants.ServerWithApiUrl + "Article", article, { headers: headers });
+  }
+
+  public EditArticle(article: Article) {
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    });
+    return this._http.put<ResultMessage>(AppConstants.ServerWithApiUrl + "Article/"+article.id, article, { headers: headers });
+
   }
 }

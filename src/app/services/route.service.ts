@@ -9,6 +9,8 @@ export class RouteService {
   constructor(private _route:Router) { }
 
   public GoToUrl(url:string){
-    this._route.navigate(["/"+url]);
+    this._route.routeReuseStrategy.shouldReuseRoute=()=>{return false}; // eğer aynı url isteği gelirse refresh yapar.
+    this._route.navigate([url]);
+
   }
 }

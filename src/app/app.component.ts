@@ -14,7 +14,9 @@ export class AppComponent {
       this._authService.Logout();
       localStorage.removeItem("userId");
       localStorage.removeItem("userName");
+      // this._routerService.GoToUrl("/Index");
       this._routerService.GoToUrl("/");
   }
+ 
 }
 

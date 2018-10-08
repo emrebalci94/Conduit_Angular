@@ -19,7 +19,7 @@
           {{article.likedUserIds.length}}</button>
         <button class="btn btn-sm btn-danger pull-right " (click)="likeOrUnlike()" *ngIf="isLiked"><i class="fas fa-heart"></i>
           {{article.likedUserIds.length}}</button>
-        <a class="btn btn-sm btn-outline-info" *ngIf="isMe" :href="'/Article/Edit/'+this.article.slug"><i class="fas fa-edit"></i>
+        <a class="btn btn-sm btn-outline-info" *ngIf="isMe" [routerLink]="['/EditArticle',article.slug]" ><i class="fas fa-edit"></i>
           Düzenle</a>
       </h4>
       <p class="review-text">{{ isBodySmall ? article.body.substring(0,200)+"..." : article.body}}<br>
