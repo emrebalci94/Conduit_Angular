@@ -29,6 +29,8 @@ import { RegisterService } from './services/register.service';
 import {ToastrModule} from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
+import { NewArticleComponent } from './Components/new-article/new-article.component';
+import { TagInputModule } from 'ngx-chips';
 @NgModule({
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { ArticleDetailComponent } from './Components/article-detail/article_deta
       progressBar: true,
       easing: "ease-in-out-quad"
     }),
+    TagInputModule
   ],
   declarations: [
     AppComponent,
@@ -58,6 +61,7 @@ import { ArticleDetailComponent } from './Components/article-detail/article_deta
     TagComponent,
     TagsComponent,
     ArticleDetailComponent,
+    NewArticleComponent,
   ],
   // HTTP_INTERCEPTORS lı olan json: Guard ile kontrol edilen bir yere istek atıldığında çalışır.
   providers: [AuthGuard, TokenService,  TagService, AuthserviceService, UserService, ArticleService, RegisterService, RouteService,

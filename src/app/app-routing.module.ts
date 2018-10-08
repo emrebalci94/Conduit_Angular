@@ -8,6 +8,7 @@ import { RegisterComponent } from './Components/register/register.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
+import { NewArticleComponent } from './Components/new-article/new-article.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: "Register", component: RegisterComponent },
   { path: "Login", component: LoginComponent },
   { path: "Article/:slug", component: ArticleDetailComponent },
+  { path: "NewArticle/:tag", component: NewArticleComponent, canActivate: [AuthGuard] },
+  { path: "NewArticle", component: NewArticleComponent, canActivate: [AuthGuard] },//boş parametresizde gelebilir parametreli gelirse otomatik tag alanını doldurucaz.
   { path: "Profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: '' }//404 not found sayfasına yönlendirme yapılabilir.
 

@@ -26,7 +26,10 @@ export class UserService {
     }
 
     updateProfile(user: User): Observable<ResultMessage> {
-        return this._http.put<ResultMessage>(this._apiUrl, user);
+        const headers = new HttpHeaders({
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        });
+        return this._http.put<ResultMessage>(this._apiUrl, user, { headers: headers });
     }
 
     updateToProfileImage(file: File): Observable<ResultMessage> {

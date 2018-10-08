@@ -26,6 +26,7 @@ import { throws } from 'assert';
   </ng-template>
   `,
 })
+
 export class ArticleDetailComponent implements OnInit, OnDestroy { //inline templatelerde OnDestroy şart.
   slug: string;
   private params: any;

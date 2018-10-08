@@ -47,9 +47,12 @@ export class ListComponent implements OnInit {
 
   isLiked(ids: number[]): boolean {
     const userId = localStorage.getItem("userId");
-    if (userId) {
-
-      return ids.some(p => p == this.user.id);
+    const user=this.user;
+    if (userId && user) {
+      if (ids.length>0) {
+        return ids.some(p => p && p == user.id);
+      }
+      return false;
     }
     return false;
   }
@@ -60,9 +63,9 @@ export class ListComponent implements OnInit {
       if (this.tabs.filter(p => p.name == tag).length == 0) {
         this.tabs.push(new Tabtag(tag, p));
       }
-      else{
-          const tagTab= document.getElementById("t-"+tag+"-tab");
-          tagTab.click();
+      else {
+        const tagTab = document.getElementById("t-" + tag + "-tab");
+        tagTab.click();
       }
       // console.log(this.tabs);
     });
@@ -73,7 +76,7 @@ export class ListComponent implements OnInit {
     if (indexOfTabs >= 0) {
       this.tabs.splice(indexOfTabs, 1);
       setTimeout(() => {
-        const homeTab= document.getElementById("home-tab");
+        const homeTab = document.getElementById("home-tab");
         homeTab.click();
       }, 50);
     }

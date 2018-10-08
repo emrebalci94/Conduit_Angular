@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Repository } from './common/repository';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
 import { Article, ArticleViewModel } from '../models/article';
@@ -36,5 +36,12 @@ export class ArticleService {
   public Liked(userId: string, articleId: string): Observable<ResultMessage> {
     let url = AppConstants.ServerWithApiUrl + `User/favoritearticle/${userId}?articleId=${articleId}`;
     return this._http.post<ResultMessage>(url, null);
+  }
+
+  public NewArticle(article: Article): Observable<ResultMessage> {
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+  });
+    return this._http.post<ResultMessage>(AppConstants.ServerWithApiUrl+"Article", article,{ headers: headers });
   }
 }

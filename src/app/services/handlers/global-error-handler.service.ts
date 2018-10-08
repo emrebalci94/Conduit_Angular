@@ -37,6 +37,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       default:
         //, private _toastrService: ToastrService
         // _routerService.navigate(["/"]);
+        console.log(error);
         setTimeout(() => _toastrService.error(error.toString(), "Hata"));
         break;
     }

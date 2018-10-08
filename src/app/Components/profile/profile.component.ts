@@ -31,7 +31,10 @@ export class ProfileComponent implements OnInit {
         this._toastrService.success("Kayıt başarılı");
 
       }
-    }, err => throws(err));
+    }, err => {
+      // console.log(err);
+      throw(err);
+    });
   }
 
   upload() {
