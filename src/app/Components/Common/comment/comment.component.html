@@ -1,0 +1,23 @@
+<div class="media comment-box">
+  <div class="media-left">
+    <a href="#">
+      <img class="img-responsive user-photo rounded-circle" [src]="comment.authorUser.image ? comment.authorUser.image:''">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">{{comment.authorUser.userName}}
+      <div class="pull-right" *ngIf="isUser">
+        <button class="btn btn-sm btn-outline-primary " (click)="isEdit=false;" *ngIf="isEdit"><i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-success " (click)="isEdit=true;UpdateComment();" *ngIf="!isEdit" ><i class="fas fa-check"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger"  (click)="remove()"><i class="fas fa-trash"></i> </button>
+      </div>
+    </h4>
+    <p> <textarea id="commentBody"[(ngModel)]="comment.body" class="form-group w-100 " rows="3"  [readOnly]="isEdit"> </textarea> <br>
+      <span class="review-date text-right" style="float: right;font-size: 10px;"><i class="far fa-clock"></i>
+        {{comment.updatedAt | date:'dd-MM-yyyy hh:mm' }}</span>
+      <br>
+    </p>
+  </div>
+</div>

@@ -11,14 +11,14 @@ import { throws } from 'assert';
     <div class="row">
       <div class="col-md-8">
         <app-article  [article]="article" [isBodySmall]="false" [isLiked]="isLiked" [isMe]="isMe"></app-article>
+      <a [routerLink]="['']"  class="btn btn-outline-dark w-25 ml-2"> <i class="fas fa-home"></i> Anasayfa</a>
+
       </div>
       <div class="col-md-4">
-        Commentler gelecek.
-      </div>
-      
-    </div>
+      <app-comment-list [slug]="slug" [articleId]="article.id"></app-comment-list>    
+     </div>
+</div>
 
-      <a [routerLink]="['']"  class="btn btn-outline-dark w-25 ml-2"> <i class="fas fa-home"></i> Anasayfa</a>
     
   </div>
   <ng-template #loading>

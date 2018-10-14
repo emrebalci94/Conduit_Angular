@@ -27,11 +27,14 @@ import { ArticleService } from './services/article.service';
 import { RegisterService } from './services/register.service';
 
 import {ToastrModule} from 'ngx-toastr';
+
 import { CommonModule } from '@angular/common';
 import { ArticleDetailComponent } from './Components/article-detail/article_detail.component';
 import { NewArticleComponent } from './Components/new-article/new-article.component';
 import { TagInputModule } from 'ngx-chips';
 import { EditArticleComponent } from './Components/edit-article/edit-article.component';
+import { CommentListComponent } from './Components/comment-list/comment-list.component';
+import { CommentComponent } from './Components/Common/comment/comment.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +52,7 @@ import { EditArticleComponent } from './Components/edit-article/edit-article.com
       progressBar: true,
       easing: "ease-in-out-quad"
     }),
-    TagInputModule
+    TagInputModule,
   ],
   declarations: [
     AppComponent,
@@ -64,6 +67,8 @@ import { EditArticleComponent } from './Components/edit-article/edit-article.com
     ArticleDetailComponent,
     NewArticleComponent,
     EditArticleComponent,
+    CommentListComponent,
+    CommentComponent,
   ],
   // HTTP_INTERCEPTORS lı olan json: Guard ile kontrol edilen bir yere istek atıldığında çalışır.
   providers: [AuthGuard, TokenService,  TagService, AuthserviceService, UserService, ArticleService, RegisterService, RouteService,

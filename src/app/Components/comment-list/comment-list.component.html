@@ -1,0 +1,46 @@
+<div class="card mt-4">
+  <div class="card-header bg-dark text-white">
+    <h4><i class="fas fa-comments"></i> Yorumlar</h4>
+  </div>
+
+
+  <div class="card-body" *ngIf="commentViewModel">
+    <div *ngIf="commentViewModel.obj.comments.length<=0" class="text-center"> <code> Henüz yorum yapılmamış.</code>
+    </div>
+    <div *ngIf="commentViewModel.obj.comments && commentViewModel.obj.comments.length>0">
+      <div *ngIf="isLoading" class="text-center">
+        <i class="fa fa-3x fa-spin fa-spinner"></i> <br />Yorumlar Yükleniyor
+      </div>
+      <app-comment *ngFor="let comment of commentViewModel.obj.comments" [comment]="comment" (removeClick)="deleteComment($event)" (updateComment)="updateComment($event)"></app-comment>
+      <div class="text-sm-right"> <code class="text-dark bg-light"> Toplam {{commentViewModel.obj.totalCount}} yorum bulunmaktadır. </code></div>
+    </div>
+    <hr>
+    <nav *ngIf="pagination.length>1">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [ngClass]="{'disabled': pagination.offset==0}"><button class="page-link"  (click)="GetComment((pagination.offset-1));">
+            <i class="fa fa-backward"></i> </button></li>
+        <li class="page-item" *ngFor="let item of ranger(pagination.length)" (click)="GetComment((item-1));" [ngClass]="{'active': pagination.offset==(item-1)}">
+          <button class="page-link" href="#">{{item}} </button></li>
+        <li class="page-item" [ngClass]="{'disabled': pagination.offset==pagination.length-1}"><button class="page-link"
+          (click)="GetComment((pagination.offset+1));"> <i class="fa fa-forward"></i> </button></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group">
+          <textarea type="text" class="form-control input-lg" placeholder="Yorum Yap" tabindex="1" rows="3" id="txtComment" [(ngModel)]="newComment.body" 
+            required ></textarea>
+        </div>
+      </div>
+      <div class="col-md-1 mt-4" *ngIf="isSendding">
+        <i class="fa fa-2x fa-spin fa-cog"></i>
+      </div>
+      <div class="col-md-2 mt-3">
+        <button class="btn btn-outline-success" (click)="send()">Send</button>
+      </div>
+
+    </div>
+  </div>
+</div>
